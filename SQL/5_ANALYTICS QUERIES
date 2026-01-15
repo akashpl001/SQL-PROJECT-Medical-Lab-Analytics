@@ -1,0 +1,30 @@
+-- Monthly Revenue Trend
+SELECT FORMAT(payment_date,'yyyy-MM') AS month,
+       SUM(amount) AS revenue
+FROM payments
+GROUP BY FORMAT(payment_date,'yyyy-MM');
+
+-- Branch Revenue Ranking
+SELECT lb.branch_name,
+       SUM(p.amount) AS revenue,
+       RANK() OVER (ORDER BY SUM(p.amount) DESC) AS rank_no
+FROM lab_branches lb
+JOIN test_orders o ON lb.branch_id=o.branch_id
+JOIN payments p ON o.order_id=p.order_id
+GROUP BY lb.branch_name;
+
+-- Abnormal Test Percentage
+SELECT mt.test_name,
+       COUNT(*) total_tests,
+       SUM(CASE WHEN tr.result_status='Abnormal' THEN 1 ELSE 0 END) abnormal_tests,
+       CAST(100.0 * SUM(CASE WHEN tr.result_status='Abnormal' THEN 1 ELSE 0 END)/COUNT(*) AS DECIMAL(5,2)) abnormal_pct
+FROM medical_tests mt
+JOIN test_order_details tod ON mt.test_id=tod.test_id
+JOIN test_results tr ON tod.order_detail_id=tr.order_detail_id
+GROUP BY mt.test_name;
+
+-- Average Turnaround Time
+SELECT AVG(DATEDIFF(day,o.order_date,r.result_date)) AS avg_TAT_days
+FROM test_orders o
+JOIN test_order_details tod ON o.order_id=tod.order_id
+JOIN test_results r ON tod.order_detail_id=r.order_detail_id;
