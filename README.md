@@ -45,3 +45,18 @@ The database consists of multiple interconnected tables including:
 - Date & time analysis
 
 ## 📂 Project Structure
+
+medical-lab-analytics/
+├── sql/
+├── insights/
+├── README.md
+
+
+## 🎯 Outcome
+This project demonstrates the ability to design databases, write optimized SQL
+queries, and translate raw data into meaningful business insights.
+
+## 👤 Author
+**Akash P L**  
+Aspiring Data Analyst | SQL | Analytics
+
