@@ -5,7 +5,7 @@ This project simulates a real-world medical laboratory database and performs
 advanced SQL analysis to generate actionable business and operational insights.
 It is designed to showcase SQL skills for Data Analyst / Business Analyst roles.
 
-## 🛠 Tools & Technologies
+##  Tools & Technologies
 - SQL Server
 - Relational Database Design
 - Advanced SQL (Joins, CTEs, Window Functions)
